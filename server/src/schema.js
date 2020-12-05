@@ -31,7 +31,7 @@ const typeDefs = gql`
         LARGE
       }
       type Query {
-        launches: [Launch]!
+        launches(pageSize: Int after: String): LaunchConnection!
         launch(id: ID!): Launch
         me: User
       }
@@ -45,7 +45,11 @@ const typeDefs = gql`
         message: String
         launches: [Launch]
       }
-      
+      type LaunchConnection {
+        cursor: String!
+        hasMore: Boolean!
+        launches: [Launch]!
+      }   
       
 `;
 
